@@ -2,7 +2,7 @@ import { BasicCustomer, Customer } from "../types/customer";
 import { db } from "../dist/db";
 import { OkPacket, RowDataPacket } from "mysql2";
 
-export const createCustomer = (customer: Customer, callback: Function) => {
+export const create = (customer: Customer, callback: Function) => {
     const queryString = "INSERT INTO Customer (name, email, password) VALUES (?, ?, ?)";
 
     db.query(
@@ -17,7 +17,7 @@ export const createCustomer = (customer: Customer, callback: Function) => {
     );
 };
 
-export const findOneCustomer = (customerId: number, callback: Function) => {
+export const findOne = (customerId: number, callback: Function) => {
     const queryString = "SELECT * FROM Customer WHERE id = ?";
 
     db.query(queryString, customerId, (err, result) => {
@@ -34,7 +34,7 @@ export const findOneCustomer = (customerId: number, callback: Function) => {
     });
 };
 
-export const updateCustomer = (customer: Customer, callback: Function) => {
+export const update = (customer: Customer, callback: Function) => {
     const queryString = "UPDATE Customer SET name = ?, email = ?, password = ? WHERE id = ?";
 
     db.query(
@@ -47,7 +47,7 @@ export const updateCustomer = (customer: Customer, callback: Function) => {
     );
 };
 
-export const findAllCustomers = (callback: Function) => {
+export const findAll = (callback: Function) => {
     const queryString = "SELECT * FROM Customer";
 
     db.query(queryString, (err, result) => {

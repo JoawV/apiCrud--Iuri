@@ -2,7 +2,7 @@ import { BasicProduct, Product } from "../types/product";
 import { db } from "../dist/db";
 import { OkPacket, RowDataPacket } from "mysql2";
 
-export const createProduct = (product: Product, callback: Function) => {
+export const create = (product: Product, callback: Function) => {
     const queryString = "INSERT INTO Product (name, description, instockQuantity, price) VALUES (?, ?, ?, ?)";
 
     db.query(
@@ -17,7 +17,7 @@ export const createProduct = (product: Product, callback: Function) => {
     );
 };
 
-export const findOneProduct = (productId: number, callback: Function) => {
+export const findOne = (productId: number, callback: Function) => {
     const queryString = "SELECT * FROM Product WHERE id = ?";
 
     db.query(queryString, productId, (err, result) => {
@@ -35,7 +35,7 @@ export const findOneProduct = (productId: number, callback: Function) => {
     });
 };
 
-export const updateProduct = (product: Product, callback: Function) => {
+export const update = (product: Product, callback: Function) => {
     const queryString = "UPDATE Product SET name = ?, description = ?, instockQuantity = ?, price = ? WHERE id = ?";
 
     db.query(
@@ -48,7 +48,7 @@ export const updateProduct = (product: Product, callback: Function) => {
     );
 };
 
-export const findAllProducts = (callback: Function) => {
+export const findAll = (callback: Function) => {
     const queryString = "SELECT * FROM Product";
 
     db.query(queryString, (err, result) => {
